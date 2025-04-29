@@ -4,12 +4,14 @@ const express = require('express');
 const fs = require('fs');
 const Papa = require('papaparse');
 const cors = require('cors');
+const geminiRoute = require('./routes/gemini');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); // important to parse JSON body for POST
+app.use("/api", geminiRoute);
 
 // POST /villageinfo
 app.post('/villageinfo', (req, res) => {
